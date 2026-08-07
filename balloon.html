@@ -10,6 +10,7 @@
       display: flex; justify-content: center; align-items: center;
       overflow: hidden;
     }
+    /* Error box */
     #message {
       font-size: 26px; text-align: center; max-width: 800px;
       opacity: 1; transition: opacity 2s ease;
@@ -19,13 +20,15 @@
     }
     #message::before { content: "⚠️ 🤪 "; font-size: 32px; margin-right: 10px; }
 
+    /* Balloons container */
     #balloons {
-      opacity: 0; transition: opacity 2s ease;
+      display: flex; opacity: 0; visibility: hidden;
+      transition: opacity 2s ease;
       position: absolute; width: 100%; height: 100%;
       top: 0; left: 0; justify-content: center; align-items: center;
-      gap: 120px; display: flex; /* always flex, just hidden by opacity */
+      gap: 120px;
     }
-    #balloons.show { opacity: 1; }
+    #balloons.show { opacity: 1; visibility: visible; }
 
     .balloon {
       width: 140px; height: 180px; border-radius: 50%;
@@ -39,22 +42,38 @@
       content: ""; position: absolute; bottom: -50px; left: 50%;
       width: 2px; height: 50px; background: #fff;
     }
+    /* Pop animation */
+    .balloon.pop { animation: pop 0.5s forwards; }
+    @keyframes pop {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
 
-    #popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    #popup {
+      position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
       background: rgba(0,0,0,0.9); padding: 40px; border-radius: 20px;
       color: #fff; font-size: 24px; text-align: center; display: none;
-      max-width: 90%; max-height: 90%; overflow: auto; }
+      max-width: 90%; max-height: 90%; overflow: auto;
+    }
     #popup img { max-width: 220px; margin: 10px; border-radius: 10px; box-shadow: 0 0 10px #fff; }
     #closeBtn { margin-top: 20px; padding: 10px 20px; background: #d4b483; border: none; border-radius: 10px; font-size: 20px; cursor: pointer; }
 
-    #finalMessage { display: none; position: fixed; bottom: 40px; width: 100%;
+    /* Finale message higher on screen */
+    #finalMessage {
+      display: none; position: fixed; top: 20%; width: 100%;
       text-align: center; font-size: 56px; font-weight: bold;
-      color: #ffd700; text-shadow: 0 0 25px #fff, 0 0 40px #ff3333; }
-    #restartBtn { display: none; position: fixed; bottom: 100px; left: 50%;
-      transform: translateX(-50%); padding: 20px 50px; font-size: 28px; font-weight: bold;
-      background: linear-gradient(135deg, #d4b483, #b9975b); color: #fff;
-      border: none; border-radius: 20px; cursor: pointer;
-      transition: transform 0.3s, background 0.3s; box-shadow: 0 0 25px rgba(0,0,0,0.5); }
+      color: #ffd700; text-shadow: 0 0 25px #fff, 0 0 40px #ff3333;
+    }
+    /* Smaller restart button */
+    #restartBtn {
+      display: none; position: fixed; bottom: 60px; left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 25px; font-size: 18px; font-weight: bold;
+      background: linear-gradient(135deg, #d4b483, #b9975b);
+      color: #fff; border: none; border-radius: 12px; cursor: pointer;
+      transition: transform 0.3s, background 0.3s;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
     #restartBtn:hover { transform: scale(1.1); background: linear-gradient(135deg, #b9975b, #5a3e2b); }
 
     canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
@@ -76,30 +95,33 @@
   <canvas id="confetti"></canvas>
 
   <script>
+    // Smooth transition: fade error, then show balloons + confetti
     window.onload = function() {
       setTimeout(() => {
         const msg = document.getElementById("message");
         msg.style.opacity = 0;
         setTimeout(() => {
           msg.remove();
-          const balloons = document.getElementById("balloons");
-          balloons.classList.add("show");
+          document.getElementById("balloons").classList.add("show");
           startConfetti();
         }, 2000);
       }, 4000);
     };
 
-    document.getElementById("balloon1").addEventListener("click", () => {
-      showPopup("<p>🎂 31 years old na nganiiii!</p>");
+    // Balloon click events with pop animation
+    document.getElementById("balloon1").addEventListener("click", e => {
+      e.target.classList.add("pop");
+      showPopup("<p>🎂 Happy 31st Birthday! 🎂<br>Wishing you joy, love, and endless adventures ahead.</p>");
       showFinale();
     });
-    document.getElementById("balloon2").addEventListener("click", () => {
+    document.getElementById("balloon2").addEventListener("click", e => {
+      e.target.classList.add("pop");
       showPopup(`
         <p>📸 Your pictures:</p>
-        <img src="images/IMG_1234.JPG" alt="Photo 1">
-        <img src="images/IMG_5678.JPG" alt="Photo 2">
-        <img src="images/IMG_9012.JPG" alt="Photo 3">
-        <img src="images/IMG_3456.JPG" alt="Photo 4">
+        <img src="images/Photo1.jpg" alt="Photo 1">
+        <img src="images/Photo2.jpg" alt="Photo 2">
+        <img src="images/Photo3.jpg" alt="Photo 3">
+        <img src="images/Photo4.jpg" alt="Photo 4">
       `);
       showFinale();
     });
@@ -120,6 +142,7 @@
       window.location.href = "index.html";
     });
 
+    // Confetti
     const canvas = document.getElementById("confetti");
     const ctx = canvas.getContext("2d");
     canvas.width = window.innerWidth; canvas.height = window.innerHeight;
@@ -152,5 +175,3 @@
     }
     function startConfetti() { initConfetti(); setInterval(drawConfetti, 30); }
   </script>
-</body>
-</html>
