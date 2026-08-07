@@ -51,4 +51,21 @@
 <body>
   <div class="quest-box">
     <h1>🟢 Easy Question 3</h1>
-    <p>What is the largest organ in the human body?
+    <p>What is the largest organ in the human body?</p>
+    <input type="text" id="answer" placeholder="Type your answer here">
+    <br>
+    <button onclick="checkAnswer()">Submit</button>
+    <div id="feedback"></div>
+  </div>
+
+  <script>
+    function checkAnswer() {
+      const userAnswer = document.getElementById('answer').value.trim().toLowerCase();
+      const feedback = document.getElementById('feedback');
+      if (userAnswer === "skin") {
+        feedback.textContent = "✅ Correct! Proceeding to the Difficult round...";
+        feedback.style.color = "green";
+        // FIXED: route to difficult1.html instead of balloon.html
+        setTimeout(() => { window.location.href = 'difficult1.html'; }, 2000);
+      } else {
+        feedback.textContent
