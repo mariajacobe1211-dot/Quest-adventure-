@@ -2,70 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Easy Question 2</title>
-  <style>
-    body {
-      background: url('assets/images/parchment.jpg') no-repeat center center fixed;
-      background-size: cover;
-      font-family: Verdana, Arial, sans-serif; /* clean, readable font */
-      color: #3b2f2f;
-      text-align: center;
-      padding: 40px;
-      font-size: 18px;
-      line-height: 1.6;
-    }
-    .quest-box {
-      background: rgba(255,255,255,0.9);
-      border: 3px solid #3b2f2f;
-      border-radius: 12px;
-      padding: 30px;
-      max-width: 700px;
-      margin: auto;
-      box-shadow: 0 0 15px rgba(0,0,0,0.4);
-    }
-    h1 { color: #5a3e2b; margin-bottom: 25px; font-size: 22px; }
-    p { margin-bottom: 25px; font-size: 18px; }
-    input[type="text"] {
-      padding: 10px;
-      width: 250px;
-      border: 2px solid #3b2f2f;
-      border-radius: 6px;
-      font-size: 16px;
-    }
-    button {
-      margin-top: 15px;
-      padding: 12px 20px;
-      background: #d4b483;
-      color: #3b2f2f;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      font-size: 16px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    button:hover { background: #b9975b; color: #fff; }
-    #feedback { margin-top: 20px; font-weight: bold; }
-  </style>
+  <title>Easy General Questions – Q2</title>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <div class="quest-box">
-    <h1>🟢 Easy Question 2</h1>
-    <p>Which civilization invented cuneiform, the earliest known writing system?</p>
-    <input type="text" id="answer" placeholder="Type your answer here">
-    <br>
-    <button onclick="checkAnswer()">Submit</button>
+  <div id="quiz">
+    <h2>🟢 Easy General Questions</h2>
+    <p>Q2. Which civilization invented cuneiform, the earliest known writing system?</p>
+    <button onclick="checkAnswer('A')">A. Egyptians</button>
+    <button onclick="checkAnswer('B')">B. Greeks</button>
+    <button onclick="checkAnswer('C')">C. Sumerians</button>
+    <button onclick="checkAnswer('D')">D. Romans</button>
     <div id="feedback"></div>
   </div>
 
   <script>
-    function checkAnswer() {
-      const userAnswer = document.getElementById('answer').value.trim().toLowerCase();
-      const feedback = document.getElementById('feedback');
-      if (userAnswer === "sumerians") {
-        feedback.textContent = "✅ Correct! Proceed to the next challenge.";
+    function checkAnswer(choice) {
+      const feedback = document.getElementById("feedback");
+      if (choice === "C") {
+        feedback.textContent = "✅ Correct! Proceeding to next question...";
         feedback.style.color = "green";
-        setTimeout(() => { window.location.href = 'easy3.html'; }, 1500);
+        setTimeout(() => { window.location.href = "easy3.html"; }, 2000);
       } else {
         feedback.textContent = "❌ Wrong answer. Try again!";
         feedback.style.color = "red";
