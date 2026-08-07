@@ -2,51 +2,32 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Adventure Quest – Easy Round</title>
+  <title>Easy General Questions – Q3</title>
   <link rel="stylesheet" href="assets/css/style.css">
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      font-family: "Papyrus", "Times New Roman", serif;
-      background: url("assets/css/parchment.jpg") no-repeat center center fixed;
-      background-size: cover;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #3b2f2f;
-      text-align: center;
-    }
-    #message {
-      font-size: 1.8em;
-      padding: 20px;
-      background: rgba(255, 248, 220, 0.85);
-      border: 3px solid #8b5a2b;
-      border-radius: 12px;
-      box-shadow: 0 0 12px #d2b48c;
-      transition: opacity 2s ease;
-    }
-  </style>
 </head>
 <body>
-  <div id="message">
-    🎉 Well done, adventurer! You conquered the Easy Round.<br>
-    Prepare yourself… the **Difficult Challenges** await!
+  <div id="quiz">
+    <h2>🟢 Easy General Questions</h2>
+    <p>Q3. What is the largest organ in the human body?</p>
+    <button onclick="checkAnswer('A')">A. Heart</button>
+    <button onclick="checkAnswer('B')">B. Liver</button>
+    <button onclick="checkAnswer('C')">C. Skin</button>
+    <button onclick="checkAnswer('D')">D. Lungs</button>
+    <div id="feedback"></div>
   </div>
 
   <script>
-    window.onload = function() {
-      // Show message for 3 seconds, then fade out
-      setTimeout(() => {
-        const msg = document.getElementById("message");
-        if (msg) msg.style.opacity = 0;
-
-        // After fade, redirect to the first difficult question
-        setTimeout(() => {
-          window.location.href = "difficult1.html";
-        }, 2000);
-      }, 3000);
-    };
+    function checkAnswer(choice) {
+      const feedback = document.getElementById("feedback");
+      if (choice === "C") {
+        feedback.textContent = "✅ Correct! Transitioning to the Difficult Round...";
+        feedback.style.color = "green";
+        setTimeout(() => { window.location.href = "difficult1.html"; }, 2500);
+      } else {
+        feedback.textContent = "❌ Wrong answer. Try again!";
+        feedback.style.color = "red";
+      }
+    }
   </script>
 </body>
 </html>
