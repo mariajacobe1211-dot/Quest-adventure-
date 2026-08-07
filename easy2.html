@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Easy Question 2</title>
-</head>
+<head><meta charset="UTF-8"><title>Easy Question 2</title></head>
 <body>
   <div id="quiz">
     <h2>🟢 Easy General Questions</h2>
@@ -14,17 +11,16 @@
     <button onclick="checkAnswer('D')">D. Romans</button>
     <div id="feedback"></div>
   </div>
-
   <script>
-    function checkAnswer(choice) {
-      const feedback = document.getElementById("feedback");
-      if (choice === "C") {
-        feedback.textContent = "✅ Correct! Proceeding to next question...";
-        feedback.style.color = "green";
-        setTimeout(() => { window.location.href = "easy3.html"; }, 2000);
+    function checkAnswer(choice){
+      const feedback=document.getElementById("feedback");
+      if(choice==="C"){
+        feedback.textContent="✅ Correct! Proceeding to next question...";
+        feedback.style.color="green";
+        setTimeout(()=>{ window.location.href="easy3.html"; },2000);
       } else {
-        feedback.textContent = "❌ Wrong answer. Try again!";
-        feedback.style.color = "red";
+        feedback.textContent="❌ Wrong answer. Try again!";
+        feedback.style.color="red";
       }
     }
   </script>
