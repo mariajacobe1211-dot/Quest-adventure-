@@ -7,7 +7,7 @@
     body {
       margin: 0;
       height: 100vh;
-      background: #0d0d0d; /* dark theme */
+      background: #0d0d0d; /* cool dark theme */
       color: #f0f0f0;
       font-family: Verdana, Arial, sans-serif;
       display: flex;
@@ -155,6 +155,7 @@
   <canvas id="confetti"></canvas>
 
   <script>
+    // Fade error message then show balloons + confetti
     window.onload = function() {
       setTimeout(() => {
         document.getElementById("message").style.opacity = 0;
@@ -166,6 +167,7 @@
       }, 4000);
     };
 
+    // Balloon click events
     document.getElementById("balloon1").addEventListener("click", () => {
       showPopup("<p>🎂 31 years old na nganiiii!</p>");
       showFinale();
@@ -175,3 +177,39 @@
         <p>📸 Your pictures:</p>
         <img src="images/IMG_1234.JPG" alt="Photo 1">
         <img src="images/IMG_5678.JPG" alt="Photo 2">
+        <img src="images/IMG_9012.JPG" alt="Photo 3">
+        <img src="images/IMG_3456.JPG" alt="Photo 4">
+      `);
+      showFinale();
+    });
+
+    function showPopup(content) {
+      document.getElementById("popupContent").innerHTML = content;
+      document.getElementById("popup").style.display = "block";
+    }
+    document.getElementById("closeBtn").addEventListener("click", () => {
+      document.getElementById("popup").style.display = "none";
+    });
+
+    function showFinale() {
+      document.getElementById("finalMessage").style.display = "block";
+      document.getElementById("restartBtn").style.display = "block";
+    }
+
+    document.getElementById("restartBtn").addEventListener("click", () => {
+      window.location.href = "index.html";
+    });
+
+    // Confetti
+    const canvas = document.getElementById("confetti");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    let confettiPieces = [];
+
+    function initConfetti() {
+      confettiPieces = [];
+      for (let i = 0; i < 200; i++) {
+        confettiPieces.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height - canvas
