@@ -5,9 +5,9 @@
   <title>Birthday Quest Begins</title>
   <style>
     body {
-      margin: 0; height: 100vh;
+      margin: 0; height: 100vh; width: 100vw;
       font-family: "Georgia", serif;
-      background: linear-gradient(to bottom right, #3e2723, #8d6e63), 
+      background: linear-gradient(to bottom right, #3e2723, #8d6e63),
                   url("assets/css/parchment.jpg") no-repeat center center fixed;
       background-blend-mode: multiply;
       background-size: cover;
@@ -18,43 +18,9 @@
       font-size: 1.6em; line-height: 1.8;
       padding: 40px; background: rgba(255,248,220,0.9);
       border: 4px solid #8b5a2b; border-radius: 14px;
-      box-shadow: 0 0 25px rgba(255, 215, 0, 0.8), 0 0 50px rgba(139, 69, 19, 0.6);
+      box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
       max-width: 900px; font-weight: bold; color: #2f1b0c;
-      animation: fadeIn 2s ease-in-out;
     }
-    h1 {
-      margin-bottom: 20px; color: #5a3e1b;
-      font-size: 2.4em; font-weight: bold;
-      text-shadow: 2px 2px 6px #d2b48c;
-    }
-    p { margin-bottom: 25px; }
+    h1 { margin-bottom: 20px; color: #5a3e1b; font-size: 2.4em; }
     button {
-      padding: 16px 24px; font-size: 1.3em; font-weight: bold;
-      background: linear-gradient(to right, #f5deb3, #deb887);
-      border: 3px solid #8b5a2b; border-radius: 10px;
-      cursor: pointer; transition: transform 0.2s, background 0.3s;
-      box-shadow: 0 0 12px rgba(0,0,0,0.4);
-    }
-    button:hover {
-      background: linear-gradient(to right, #deb887, #f5deb3);
-      transform: scale(1.05);
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
-  </style>
-</head>
-<body>
-  <div id="welcome">
-    <h1>🎉 The Birthday Quest Awaits!</h1>
-    <p>You’ve unlocked this challenge by scanning the QR.<br>
-    Ready to test your knowledge and prove your wit?<br>
-    PS: No need to review — stock knowledge will do!</p>
-    <button onclick="startQuiz()">Begin the Challenge</button>
-  </div>
-  <script>
-    function startQuiz() { window.location.href = "easy1.html"; }
-  </script>
-</body>
-</html>
+      padding
