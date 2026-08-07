@@ -2,15 +2,105 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Quest Reward</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-  <script src="script.js" defer></script>
+  <title>Claim Your Reward</title>
+  <style>
+    body {
+      background: url('assets/images/parchment.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: Verdana, Arial, sans-serif;
+      color: #3b2f2f;
+      text-align: center;
+      padding: 80px;
+      opacity: 0;
+      transition: opacity 1.5s ease;
+    }
+    body.fade-in { opacity: 1; }
+
+    h1 { font-size: 50px; color: #5a3e2b; margin-bottom: 40px; }
+    p { font-size: 26px; margin-bottom: 60px; }
+
+    #nextBtn {
+      display: inline-block;
+      padding: 50px 120px; /* spacious button */
+      font-size: 36px;
+      font-weight: bold;
+      background: linear-gradient(135deg, #d4b483, #b9975b);
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: transform 0.3s, background 0.3s;
+      box-shadow: 0 0 30px rgba(0,0,0,0.6);
+    }
+    #nextBtn:hover {
+      transform: scale(1.1);
+      background: linear-gradient(135deg, #b9975b, #5a3e2b);
+    }
+
+    canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+    }
+  </style>
 </head>
 <body>
-  <div class="quiz-card">
-    <h2 class="glow">🎉 Quest Complete!</h2>
-    <p>You’ve conquered the quest! Ready to see your reward?</p>
-    <button onclick="window.location.href='balloon.html'">Claim Reward</button>
-  </div>
+  <h1>🎉 Congratulations!</h1>
+  <p>You’ve reached the reward stage — click below to continue.</p>
+  <button id="nextBtn">➡️ Claim Reward</button>
+  <canvas id="confetti"></canvas>
+
+  <script>
+    window.onload = function() {
+      document.body.classList.add("fade-in");
+      startConfetti();
+    };
+
+    const canvas = document.getElementById("confetti");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    let confettiPieces = [];
+
+    function initConfetti() {
+      confettiPieces = [];
+      for (let i = 0; i < 250; i++) {
+        confettiPieces.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height - canvas.height,
+          r: Math.random() * 6 + 2,
+          color: "hsl(" + Math.random() * 360 + ",100%,50%)"
+        });
+      }
+    }
+    function drawConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      confettiPieces.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, false);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+      });
+      updateConfetti();
+    }
+    function updateConfetti() {
+      confettiPieces.forEach(p => {
+        p.y += 2;
+        if (p.y > canvas.height) {
+          p.x = Math.random() * canvas.width;
+          p.y = -10;
+        }
+      });
+    }
+    function startConfetti() {
+      initConfetti();
+      setInterval(drawConfetti, 30);
+    }
+
+    document.getElementById("nextBtn").addEventListener("click", function() {
+      window.location.href = "balloon.html";
+    });
+  </script>
 </body>
 </html>
