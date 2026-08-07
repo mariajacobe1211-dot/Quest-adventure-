@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Birthday Quest Begins</title>
+  <title>The Birthday Quest</title>
   <style>
     body {
       margin: 0; height: 100vh; width: 100vw;
@@ -21,4 +21,26 @@
       box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
       max-width: 900px; font-weight: bold; color: #2f1b0c;
     }
-    h1 { margin-bottom: 20px; color: #
+    h1 { margin-bottom: 20px; color: #5a3e1b; font-size: 2.4em; }
+    button {
+      padding: 16px 24px; font-size: 1.3em; font-weight: bold;
+      background: linear-gradient(to right, #f5deb3, #deb887);
+      border: 3px solid #8b5a2b; border-radius: 10px;
+      cursor: pointer; transition: transform 0.2s, background 0.3s;
+    }
+    button:hover { background: linear-gradient(to right, #deb887, #f5deb3); transform: scale(1.05); }
+  </style>
+</head>
+<body>
+  <div id="welcome">
+    <h1>🎉 The Birthday Quest Awaits!</h1>
+    <p>You’ve unlocked this challenge by scanning the QR.<br>
+    Ready to test your knowledge and prove your wit?<br>
+    PS: No need to review — stock knowledge will do!</p>
+    <button onclick="startQuiz()">Begin the Challenge</button>
+  </div>
+  <script>
+    function startQuiz() { window.location.href = "easy1.html"; }
+  </script>
+</body>
+</html>
