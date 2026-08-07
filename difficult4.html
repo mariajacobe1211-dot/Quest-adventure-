@@ -2,53 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Difficult Question 4</title>
-  <style>
-    body { background: url('assets/images/parchment.jpg') no-repeat center center fixed;
-           background-size: cover; font-family: Verdana, Arial, sans-serif;
-           color: #3b2f2f; text-align: center; padding: 40px; }
-    .quest-box { background: rgba(255,255,255,0.9); border: 3px solid #3b2f2f;
-                 border-radius: 12px; padding: 30px; max-width: 700px; margin: auto;
-                 box-shadow: 0 0 15px rgba(0,0,0,0.4); }
-    h1 { color:#5a3e2b; margin-bottom:25px; font-size:22px; }
-    p { margin-bottom:25px; font-size:18px; }
-    button { display:block; margin:15px auto; padding:14px 22px; background:#d4b483;
-             color:#3b2f2f; border:none; border-radius:8px; font-weight:bold;
-             transition:0.3s; max-width:500px; font-size:18px; cursor:pointer; }
-    button:hover { background:#b9975b; color:#fff; }
-    #feedback { margin-top:20px; font-weight:bold; }
-  </style>
+  <title>Difficult Practical Questions – Q4</title>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <div class="quest-box">
-    <h1>🔴 Difficult Question 4</h1>
-    <p>A person suddenly faints. What should you do?</p>
-    <form id="quizForm">
-      <button type="button" data-choice="A">A. Bigyan agad ng tubig kahit hindi pa gising</button>
-      <button type="button" data-choice="B">B. Check their breathing and make sure they are safe</button>
-      <button type="button" data-choice="C">C. Paupuin agad para hindi mahiga</button>
-      <button type="button" data-choice="D">D. Sampalin ng konti para magising</button>
-    </form>
-    <div id="feedback"></div>
+  <div id="message">
+    <h2>🔴 Difficult Practical Questions</h2>
+
+    <p><strong>Q4.</strong> A person suddenly faints. What should you do?</p>
+    <ul>
+      <li>A. Bigyan agad ng tubig kahit hindi pa gising</li>
+      <li>B. Check their breathing and make sure they are safe</li>
+      <li>C. Paupuin agad para hindi mahiga</li>
+      <li>D. Sampalin ng konti para magising</li>
+    </ul>
+    <p class="answer">Answer: B</p>
   </div>
 
   <script>
-    const feedback = document.getElementById("feedback");
-    document.querySelectorAll("#quizForm button").forEach(btn => {
-      btn.addEventListener("click", function() {
-        const choice = this.getAttribute("data-choice");
-        if (choice === "B") {
-          feedback.textContent = "✅ Correct! Moving to the next challenge...";
-          feedback.style.color = "green";
-          setTimeout(function() {
-            window.location.href = "difficult5.html"; // ROUTE to Question 5
-          }, 2000);
-        } else {
-          feedback.textContent = "❌ Wrong answer. Try again!";
-          feedback.style.color = "red";
-        }
-      });
-    });
+    window.onload = function() {
+      setTimeout(() => {
+        const msg = document.getElementById("message");
+        if (msg) msg.style.opacity = 0;
+        setTimeout(() => {
+          window.location.href = "difficult5.html";
+        }, 2000);
+      }, 8000);
+    };
   </script>
 </body>
 </html>
