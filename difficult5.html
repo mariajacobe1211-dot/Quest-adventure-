@@ -2,109 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Difficult Question 5</title>
-  <style>
-    body {
-      background: url('assets/images/parchment.jpg') no-repeat center center fixed;
-      background-size: cover;
-      font-family: Verdana, Arial, sans-serif;
-      color: #3b2f2f;
-      text-align: center;
-      padding: 40px;
-      font-size: 18px;
-      line-height: 1.6;
-      transition: opacity 1s ease;
-    }
-    body.fade-out { opacity: 0; }
-    .quest-box { background: rgba(255,255,255,0.9); border: 3px solid #3b2f2f;
-                 border-radius: 12px; padding: 30px; max-width: 700px; margin: auto;
-                 box-shadow: 0 0 15px rgba(0,0,0,0.4); }
-    h1 { color:#5a3e2b; margin-bottom:25px; font-size:22px; }
-    p { margin-bottom:25px; font-size:18px; }
-    button { display:block; margin:15px auto; padding:14px 22px; background:#d4b483;
-             color:#3b2f2f; border:none; border-radius:8px; font-weight:bold;
-             transition:0.3s; max-width:500px; font-size:18px; cursor:pointer; }
-    button:hover { background:#b9975b; color:#fff; }
-    #feedback { margin-top:20px; font-weight:bold; }
-    canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
-  </style>
+  <title>Difficult Practical Questions – Q5</title>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <div class="quest-box">
-    <h1>🔴 Difficult Question 5</h1>
-    <p>What should you do during an earthquake while you are inside a building?</p>
-    <form id="quizForm">
-      <button type="button" data-choice="A">A. Sumigaw ng “MAMA!” habang naghahanap ng matatakbuhan 😂</button>
-      <button type="button" data-choice="B">B. Run outside immediately kahit may nahuhulog na bagay</button>
-      <button type="button" data-choice="C">C. Drop, Cover, and Hold On until the shaking stops and pray for God’s protection 🙂</button>
-      <button type="button" data-choice="D">D. Mag‑video muna para may emergency content</button>
-    </form>
-    <div id="feedback"></div>
+  <div id="message">
+    <h2>🔴 Difficult Practical Questions</h2>
+
+    <p><strong>Q5.</strong> What should you do during an earthquake while you are inside a building?</p>
+    <ul>
+      <li>A. Sumigaw ng “MAMA!” habang naghahanap ng matatakbuhan 😂</li>
+      <li>B. Run outside immediately kahit may nahuhulog na bagay</li>
+      <li>C. Drop, Cover, and Hold On until the shaking stops and pray for God’s protection 🙂</li>
+      <li>D. Mag‑video muna para may emergency content</li>
+    </ul>
+    <p class="answer">Answer: C</p>
   </div>
-  <canvas id="confetti"></canvas>
 
   <script>
-    const feedback = document.getElementById("feedback");
-    const canvas = document.getElementById("confetti");
-    const ctx = canvas.getContext("2d");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    let confettiPieces = [];
-
-    function initConfetti() {
-      confettiPieces = [];
-      for (let i = 0; i < 150; i++) {
-        confettiPieces.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height - canvas.height,
-          r: Math.random() * 6 + 2,
-          color: "hsl(" + Math.random() * 360 + ",100%,50%)"
-        });
-      }
-    }
-    function drawConfetti() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      confettiPieces.forEach(p => {
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, false);
-        ctx.fillStyle = p.color;
-        ctx.fill();
-      });
-      updateConfetti();
-    }
-    function updateConfetti() {
-      confettiPieces.forEach(p => {
-        p.y += 2;
-        if (p.y > canvas.height) {
-          p.x = Math.random() * canvas.width;
-          p.y = -10;
-        }
-      });
-    }
-    function startConfetti() {
-      initConfetti();
-      setInterval(drawConfetti, 30);
-    }
-
-    document.querySelectorAll("#quizForm button").forEach(btn => {
-      btn.addEventListener("click", function() {
-        const choice = this.getAttribute("data-choice");
-        if (choice === "C") {
-          feedback.textContent = "✅ Correct! Proceed to claim your reward...";
-          feedback.style.color = "green";
-          startConfetti();
-          setTimeout(function() {
-            document.body.classList.add("fade-out");
-            setTimeout(function() {
-              window.location.href = "reward.html"; // ✅ correct filename
-            }, 1000);
-          }, 3000);
-        } else {
-          feedback.textContent = "❌ Wrong answer. Try again!";
-          feedback.style.color = "red";
-        }
-      });
-    });
+    window.onload = function() {
+      setTimeout(() => {
+        const msg = document.getElementById("message");
+        if (msg) msg.style.opacity = 0;
+        setTimeout(() => {
+          window.location.href = "reward.html"; // transition to reward
+        }, 2000);
+      }, 8000);
+    };
   </script>
 </body>
 </html>
