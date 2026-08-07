@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Difficult Practical Questions – Q5</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
-  <div id="message">
-    <h2>🔴 Difficult Practical Questions</h2>
-
-    <p><strong>Q5.</strong> What should you do during an earthquake while you are inside a building?</p>
-    <ul>
-      <li>A. Sumigaw ng “MAMA!” habang naghahanap ng matatakbuhan 😂</li>
-      <li>B. Run outside immediately kahit may nahuhulog na bagay</li>
-      <li>C. Drop, Cover, and Hold On until the shaking stops and pray for God’s protection 🙂</li>
-      <li>D. Mag‑video muna para may emergency content</li>
-    </ul>
-    <p class="answer">Answer: C</p>
+<head><meta charset="UTF-8"><title>Difficult Question 5</title></head>
+<body style="margin:0;height:100vh;width:100vw;font-family:'Georgia',serif;
+background:linear-gradient(to bottom right,#4e342e,#a1887f),
+url('assets/css/parchment.jpg') no-repeat center center fixed;
+background-blend-mode:multiply;background-size:cover;
+display:flex;justify-content:center;align-items:center;color:#2f1b0c;text-align:left;padding:40px;">
+  <div id="quiz" style="font-size:2em;line-height:1.8;padding:40px;background:rgba(255,248,220,0.95);
+  border:4px solid #8b5a2b;border-radius:14px;box-shadow:0 0 25px rgba(255,215,0,0.8);
+  width:90%;max-width:1200px;font-weight:bold;">
+    <h2 style="text-align:center;margin-bottom:25px;color:#5a3e1b;font-size:2.2em;">🔴 Difficult Round</h2>
+    <p>Q5. What should you do during an earthquake while you are inside a building?</p>
+    <button onclick="checkAnswer('A')">A. Sumigaw ng “MAMA!” habang naghahanap ng matatakbuhan 😂</button>
+    <button onclick="checkAnswer('B')">B. Run outside immediately kahit may nahuhulog na bagay</button>
+    <button onclick="checkAnswer('C')">C. Drop, Cover, and Hold On until the shaking stops and pray for God’s protection 🙂</button>
+    <button onclick="checkAnswer('D')">D. Mag‑video muna para may emergency content</button>
+    <div id="feedback"></div>
   </div>
-
   <script>
-    window.onload = function() {
-      setTimeout(() => {
-        const msg = document.getElementById("message");
-        if (msg) msg.style.opacity = 0;
-        setTimeout(() => {
-          window.location.href = "reward.html"; // transition to reward
-        }, 2000);
-      }, 8000);
-    };
+    function checkAnswer(choice){
+      const feedback=document.getElementById("feedback");
+      if(choice==="C"){
+        feedback.textContent="✅ Correct! You’ve completed the Difficult Round!";
+        feedback.style.color="green";
+        setTimeout(()=>{ window.location.href="reward.html"; },2000);
+      } else {
+        feedback.textContent="❌ Wrong answer. Try again!";
+        feedback.style.color="red";
+      }
+    }
   </script>
 </body>
 </html>
