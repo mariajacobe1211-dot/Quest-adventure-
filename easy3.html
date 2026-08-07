@@ -7,7 +7,7 @@
     body {
       background: url('assets/images/parchment.jpg') no-repeat center center fixed;
       background-size: cover;
-      font-family: Verdana, Arial, sans-serif; /* clean, readable font */
+      font-family: Verdana, Arial, sans-serif;
       color: #3b2f2f;
       text-align: center;
       padding: 40px;
@@ -65,7 +65,13 @@
       if (userAnswer === "skin") {
         feedback.textContent = "✅ Correct! Proceeding to the Difficult round...";
         feedback.style.color = "green";
-        // FIXED: route to difficult1.html instead of balloon.html
+        // Route to difficult1.html
         setTimeout(() => { window.location.href = 'difficult1.html'; }, 2000);
       } else {
-        feedback.textContent
+        feedback.textContent = "❌ Wrong answer. Try again!";
+        feedback.style.color = "red";
+      }
+    }
+  </script>
+</body>
+</html>
