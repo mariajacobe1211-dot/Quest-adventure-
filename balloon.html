@@ -107,65 +107,18 @@
       showPopup("<p>🎂 Happy 31st Birthday! 🎂<br>Wishing you joy, love, and endless adventures ahead.</p>");
       showFinale();
     });
+
     document.getElementById("balloon2").addEventListener("click", e => {
       e.target.classList.add("pop");
       showPopup(`
         <p>📸 Your pictures:</p>
-        <img src="images/photo1.jpg" alt="Photo 1">
-        <img src="images/photo2.jpg" alt="Photo 2">
-        <img src="images/photo3.jpg" alt="Photo 3">
-        <img src="images/photo4.jpg" alt="Photo 4">
+        <img src="photo1.jpg" alt="Photo 1">
+        <img src="photo2.jpg" alt="Photo 2">
+        <img src="photo3.jpg" alt="Photo 3">
+        <img src="photo4.jpg" alt="Photo 4">
       `);
       showFinale();
     });
 
     function showPopup(content) {
-      document.getElementById("popupContent").innerHTML = content;
-      document.getElementById("popup").style.display = "block";
-    }
-    document.getElementById("closeBtn").addEventListener("click", () => {
-      document.getElementById("popup").style.display = "none";
-    });
-
-    function showFinale() {
-      document.getElementById("finalMessage").style.display = "block";
-      document.getElementById("restartBtn").style.display = "block";
-    }
-    document.getElementById("restartBtn").addEventListener("click", () => {
-      window.location.href = "index.html";
-    });
-
-    const canvas = document.getElementById("confetti");
-    const ctx = canvas.getContext("2d");
-    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-    let confettiPieces = [];
-
-    function initConfetti() {
-      confettiPieces = [];
-      for (let i = 0; i < 200; i++) {
-        confettiPieces.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height - canvas.height,
-          r: Math.random() * 6 + 2,
-          color: "hsl(" + Math.random() * 360 + ",100%,50%)"
-        });
-      }
-    }
-    function drawConfetti() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      confettiPieces.forEach(p => {
-        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, false);
-        ctx.fillStyle = p.color; ctx.fill();
-      });
-      updateConfetti();
-    }
-    function updateConfetti() {
-      confettiPieces.forEach(p => {
-        p.y += 2;
-        if (p.y > canvas.height) { p.x = Math.random() * canvas.width; p.y = -10; }
-      });
-    }
-    function startConfetti() { initConfetti(); setInterval(drawConfetti, 30); }
-  </script>
-</body>
-</html>
+      document.getElementById("popupContent").inner
