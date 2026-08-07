@@ -3,17 +3,74 @@
 <head>
   <meta charset="UTF-8">
   <title>Easy Question 3</title>
-  <style>/* same style block as easy1 */</style>
+  <style>
+    body {
+      background: url('assets/images/parchment.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: Verdana, Arial, sans-serif; /* clean, readable font */
+      color: #3b2f2f;
+      text-align: center;
+      padding: 40px;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+    .quest-box {
+      background: rgba(255,255,255,0.9);
+      border: 3px solid #3b2f2f;
+      border-radius: 12px;
+      padding: 30px;
+      max-width: 700px;
+      margin: auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    }
+    h1 { color: #5a3e2b; margin-bottom: 25px; font-size: 22px; }
+    p { margin-bottom: 25px; font-size: 18px; }
+    input[type="text"] {
+      padding: 10px;
+      width: 250px;
+      border: 2px solid #3b2f2f;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 12px 20px;
+      background: #d4b483;
+      color: #3b2f2f;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover { background: #b9975b; color: #fff; }
+    #feedback { margin-top: 20px; font-weight: bold; }
+  </style>
 </head>
 <body>
   <div class="quest-box">
-    <h1>🧩 Easy Question 3</h1>
-    <p>How many days are in a week?</p>
-    <div class="choices">
-      <a href="balloon.html">7</a>
-      <a href="wrong.html">5</a>
-      <a href="wrong.html">10</a>
-    </div>
+    <h1>🟢 Easy Question 3</h1>
+    <p>What is the largest organ in the human body?</p>
+    <input type="text" id="answer" placeholder="Type your answer here">
+    <br>
+    <button onclick="checkAnswer()">Submit</button>
+    <div id="feedback"></div>
   </div>
+
+  <script>
+    function checkAnswer() {
+      const userAnswer = document.getElementById('answer').value.trim().toLowerCase();
+      const feedback = document.getElementById('feedback');
+      if (userAnswer === "skin") {
+        feedback.textContent = "✅ Correct! Proceed to the next challenge.";
+        feedback.style.color = "green";
+        setTimeout(() => { window.location.href = 'balloon.html'; }, 1500);
+      } else {
+        feedback.textContent = "❌ Wrong answer. Try again!";
+        feedback.style.color = "red";
+      }
+    }
+  </script>
 </body>
 </html>
