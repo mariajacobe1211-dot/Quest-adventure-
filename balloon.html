@@ -3,23 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <title>Balloon Surprise</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-  <script src="script.js" defer></script>
+  <style>
+    body {
+      background: url('assets/images/balloons.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'MedievalSharp', cursive;
+      color: #3b2f2f;
+      text-align: center;
+      animation: fadeIn 2s ease-in;
+    }
+    .balloon {
+      font-size: 50px;
+      cursor: pointer;
+      margin: 20px;
+      display: inline-block;
+    }
+    #surprise {
+      display: none;
+      margin-top: 30px;
+    }
+    #surprise img {
+      width: 200px;
+      border-radius: 10px;
+      margin: 10px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
 </head>
 <body>
-  <!-- Big error message in center -->
-  <div class="quiz-card">
-    <h2 class="glow">⚠️ Opppps Got Ya!</h2>
-    <p>I do not have a tangible gift reward for you,<br>
-    but consider this project and future adventure my gift.<br>
-    God bless :D</p>
-    <p>🎈 Please click the balloons below 🎈</p>
+  <h1>🎈 Pop the Balloons! 🎈</h1>
+
+  <!-- Balloons -->
+  <div class="balloon" onclick="popBalloon(1)">🎈 Balloon 1</div>
+  <div class="balloon" onclick="popBalloon(2)">🎈 Balloon 2</div>
+
+  <!-- Surprise Section -->
+  <div id="surprise">
+    <img src="assets/images/photo1.jpg" alt="Surprise 1">
+    <img src="assets/images/photo2.jpg" alt="Surprise 2">
+    <img src="assets/images/photo3.jpg" alt="Surprise 3">
+    <img src="assets/images/photo4.jpg" alt="Surprise 4">
+    <h1 style="color:#ff4081;">🎉 Happy Birthday! 🎉</h1>
   </div>
 
-  <!-- Balloon 1 -->
-  <div class="balloon" onclick="popBalloon(this,'🎂 31 years old na nganii!')">🎈</div>
-
-  <!-- Balloon 2 with photos + final message -->
-  <div class="balloon" onclick="popBalloon(this,'<h3 class=glow>Surprise Photos!</h3><br><img src=\"assets/images/pic1.jpg\"><img src=\"assets/images/pic2.jpg\"><img src=\"assets/images/pic3.jpg\"><img src=\"assets/images/pic4.jpg\"><br><h2 class=glow>Happy Birthday!</h2>')">🎈</div>
+  <script>
+    function popBalloon(balloonNumber) {
+      if (balloonNumber === 2) {
+        document.getElementById('surprise').style.display = 'block';
+      } else {
+        alert("Balloon " + balloonNumber + " popped!");
+      }
+    }
+  </script>
 </body>
 </html>
