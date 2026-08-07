@@ -13,43 +13,20 @@
       padding: 40px;
       font-size: 18px;
       line-height: 1.6;
-      transition: opacity 1s ease; /* fade-out */
+      transition: opacity 1s ease;
     }
     body.fade-out { opacity: 0; }
-
-    .quest-box {
-      background: rgba(255,255,255,0.9);
-      border: 3px solid #3b2f2f;
-      border-radius: 12px;
-      padding: 30px;
-      max-width: 700px;
-      margin: auto;
-      box-shadow: 0 0 15px rgba(0,0,0,0.4);
-    }
+    .quest-box { background: rgba(255,255,255,0.9); border: 3px solid #3b2f2f;
+                 border-radius: 12px; padding: 30px; max-width: 700px; margin: auto;
+                 box-shadow: 0 0 15px rgba(0,0,0,0.4); }
     h1 { color:#5a3e2b; margin-bottom:25px; font-size:22px; }
     p { margin-bottom:25px; font-size:18px; }
-    button {
-      display:block;
-      margin:15px auto;
-      padding:14px 22px;
-      background:#d4b483;
-      color:#3b2f2f;
-      border:none;
-      border-radius:8px;
-      font-weight:bold;
-      transition:0.3s;
-      max-width:500px;
-      font-size:18px;
-      cursor:pointer;
-    }
+    button { display:block; margin:15px auto; padding:14px 22px; background:#d4b483;
+             color:#3b2f2f; border:none; border-radius:8px; font-weight:bold;
+             transition:0.3s; max-width:500px; font-size:18px; cursor:pointer; }
     button:hover { background:#b9975b; color:#fff; }
     #feedback { margin-top:20px; font-weight:bold; }
-    canvas {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-    }
+    canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
   </style>
 </head>
 <body>
@@ -64,7 +41,6 @@
     </form>
     <div id="feedback"></div>
   </div>
-
   <canvas id="confetti"></canvas>
 
   <script>
@@ -73,69 +49,4 @@
     const ctx = canvas.getContext("2d");
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    let confettiPieces = [];
-
-    function initConfetti() {
-      confettiPieces = [];
-      for (let i = 0; i < 150; i++) {
-        confettiPieces.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height - canvas.height,
-          r: Math.random() * 6 + 2,
-          d: Math.random() * 100 + 50,
-          color: "hsl(" + Math.random() * 360 + ",100%,50%)",
-          tilt: Math.random() * 10 - 10
-        });
-      }
-    }
-
-    function drawConfetti() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      confettiPieces.forEach(p => {
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, false);
-        ctx.fillStyle = p.color;
-        ctx.fill();
-      });
-      updateConfetti();
-    }
-
-    function updateConfetti() {
-      confettiPieces.forEach(p => {
-        p.y += Math.cos(p.d) + 1 + p.r / 2;
-        p.x += Math.sin(p.d);
-        if (p.y > canvas.height) {
-          p.x = Math.random() * canvas.width;
-          p.y = -10;
-        }
-      });
-    }
-
-    function startConfetti() {
-      initConfetti();
-      setInterval(drawConfetti, 30);
-    }
-
-    document.querySelectorAll("#quizForm button").forEach(btn => {
-      btn.addEventListener("click", function() {
-        const choice = this.getAttribute("data-choice");
-        if (choice === "C") {
-          feedback.textContent = "✅ Correct! Proceed to claim your reward...";
-          feedback.style.color = "green";
-          startConfetti();
-
-          setTimeout(function() {
-            document.body.classList.add("fade-out");
-            setTimeout(function() {
-              window.location.href = "claim.html"; // ROUTE to claim reward page
-            }, 1000); // wait for fade-out
-          }, 3000); // show confetti for 3 seconds
-        } else {
-          feedback.textContent = "❌ Wrong answer. Try again!";
-          feedback.style.color = "red";
-        }
-      });
-    });
-  </script>
-</body>
-</html>
+    let confetti
