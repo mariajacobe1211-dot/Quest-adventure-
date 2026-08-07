@@ -2,15 +2,64 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Adventure Quest</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <title>Quest Adventure</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: Verdana, Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #1a1a1a, #333333, #4d2600);
+      color: #f0f0f0;
+      text-align: center;
+    }
+    h1 {
+      font-size: 64px;
+      color: #ffd700;
+      text-shadow: 0 0 25px #fff, 0 0 40px #ff3333;
+      margin-bottom: 40px;
+    }
+    p {
+      font-size: 22px;
+      max-width: 800px;
+      margin-bottom: 60px;
+      line-height: 1.6;
+    }
+    .note {
+      font-size: 18px;
+      color: #d4b483;
+      margin-top: 20px;
+      font-style: italic;
+    }
+    a {
+      display: inline-block;
+      padding: 15px 30px;
+      font-size: 20px;
+      font-weight: bold;
+      background: linear-gradient(135deg, #d4b483, #b9975b);
+      color: #fff;
+      border-radius: 12px;
+      text-decoration: none;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      transition: transform 0.3s, background 0.3s;
+    }
+    a:hover {
+      transform: scale(1.1);
+      background: linear-gradient(135deg, #b9975b, #5a3e2b);
+    }
+  </style>
 </head>
 <body>
-  <div class="quiz-card">
-    <h1 class="glow">🎮 Adventure Quest</h1>
-    <p>Ready to take the Adventure Quest?<br>
-    PS: Stock knowledge lang, no AI!</p>
-    <button onclick="window.location.href='easy1.html'">Start Quest</button>
-  </div>
+  <h1>🎉 Welcome to the Quest Adventure 🎉</h1>
+  <p>
+    This is the beginning of your interactive birthday journey.  
+    Get ready for surprises, balloons, confetti, and a special finale.  
+    Click below to start your adventure!
+  </p>
+  <a href="balloon.html">Start Adventure</a>
+  <div class="note">PS: NO NEED TO REVIEW. STOCK KNOWLEDGE WILL DO. No using of AI — just enjoy!</div>
 </body>
 </html>
