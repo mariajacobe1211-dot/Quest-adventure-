@@ -2,82 +2,51 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Easy Question 3</title>
+  <title>Adventure Quest – Easy Round</title>
+  <link rel="stylesheet" href="assets/css/style.css">
   <style>
     body {
-      background: url('assets/images/parchment.jpg') no-repeat center center fixed;
+      margin: 0;
+      height: 100vh;
+      font-family: "Papyrus", "Times New Roman", serif;
+      background: url("assets/css/parchment.jpg") no-repeat center center fixed;
       background-size: cover;
-      font-family: Verdana, Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       color: #3b2f2f;
       text-align: center;
-      padding: 40px;
-      font-size: 18px;
-      line-height: 1.6;
     }
-    .quest-box {
-      background: rgba(255,255,255,0.9);
-      border: 3px solid #3b2f2f;
+    #message {
+      font-size: 1.8em;
+      padding: 20px;
+      background: rgba(255, 248, 220, 0.85);
+      border: 3px solid #8b5a2b;
       border-radius: 12px;
-      padding: 30px;
-      max-width: 700px;
-      margin: auto;
-      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+      box-shadow: 0 0 12px #d2b48c;
+      transition: opacity 2s ease;
     }
-    h1 { color: #5a3e2b; margin-bottom: 25px; font-size: 22px; }
-    p { margin-bottom: 25px; font-size: 18px; }
-    input[type="text"] {
-      padding: 10px;
-      width: 250px;
-      border: 2px solid #3b2f2f;
-      border-radius: 6px;
-      font-size: 16px;
-    }
-    button {
-      margin-top: 15px;
-      padding: 12px 20px;
-      background: #d4b483;
-      color: #3b2f2f;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      font-size: 16px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    button:hover { background: #b9975b; color: #fff; }
-    #feedback { margin-top: 20px; font-weight: bold; }
   </style>
 </head>
 <body>
-  <div class="quest-box">
-    <h1>🟢 Easy Question 3</h1>
-    <p>What is the largest organ in the human body?</p>
-    <form id="quizForm">
-      <input type="text" id="answer" placeholder="Type your answer here">
-      <br>
-      <button type="submit">Submit</button>
-    </form>
-    <div id="feedback"></div>
+  <div id="message">
+    🎉 Well done, adventurer! You conquered the Easy Round.<br>
+    Prepare yourself… the **Difficult Challenges** await!
   </div>
 
   <script>
-    document.getElementById("quizForm").addEventListener("submit", function(event) {
-      event.preventDefault(); // prevent page reload
-      const userAnswer = document.getElementById("answer").value.trim().toLowerCase();
-      const feedback = document.getElementById("feedback");
+    window.onload = function() {
+      // Show message for 3 seconds, then fade out
+      setTimeout(() => {
+        const msg = document.getElementById("message");
+        if (msg) msg.style.opacity = 0;
 
-      if (userAnswer === "skin") {
-        feedback.textContent = "✅ Correct! Proceeding to the Difficult round...";
-        feedback.style.color = "green";
-        // ROUTE to difficult1.html (lowercase filename)
-        setTimeout(function() {
+        // After fade, redirect to the first difficult question
+        setTimeout(() => {
           window.location.href = "difficult1.html";
         }, 2000);
-      } else {
-        feedback.textContent = "❌ Wrong answer. Try again!";
-        feedback.style.color = "red";
-      }
-    });
+      }, 3000);
+    };
   </script>
 </body>
 </html>
