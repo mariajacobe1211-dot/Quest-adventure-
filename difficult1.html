@@ -2,35 +2,65 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Quest Adventure</title>
+  <title>Difficult Practical Questions – Q1</title>
+  <link rel="stylesheet" href="assets/css/style.css">
   <style>
     body {
       margin: 0;
       height: 100vh;
-      font-family: Verdana, Arial, sans-serif;
+      font-family: "Papyrus", "Times New Roman", serif;
+      background: url("assets/css/parchment.jpg") no-repeat center center fixed;
+      background-size: cover;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, #0d0d0d, #1a1a1a, #333333);
-      color: #f0f0f0;
+      color: #3b2f2f;
+      text-align: left;
+      padding: 40px;
+    }
+    #message {
+      font-size: 1.2em;
+      line-height: 1.6;
+      padding: 20px;
+      background: rgba(255, 248, 220, 0.9);
+      border: 3px solid #8b5a2b;
+      border-radius: 12px;
+      box-shadow: 0 0 12px #d2b48c;
+      transition: opacity 2s ease;
+      max-width: 800px;
+    }
+    h2 {
       text-align: center;
+      margin-bottom: 20px;
+      color: #5a3e1b;
     }
-    h1 {
-      font-size: 64px;
-      color: #ffd700;
-      text-shadow: 0 0 25px #fff, 0 0 40px #ff3333;
-      margin-bottom: 60px;
-    }
-    .note {
-      font-size: 18px;
-      color: #d4b483;
-      margin-top: 40px;
-      font-style: italic;
-    }
-    a {
-      display: inline-block;
-      padding: 15px 30px;
-      font-size: 20px;
+    .answer {
+      margin-top: 15px;
       font-weight: bold;
-      background: linear-gradient
+      color: #2f4f4f;
+    }
+  </style>
+</head>
+<body>
+  <div id="message">
+    <h2>🔴 Difficult Practical Questions</h2>
+
+    <p><strong>Q1.</strong> What should a responsible driver do when the traffic light turns yellow?</p>
+    <ul>
+      <li>A. Sabihin “kaya pa ‘to!” habang dinidiinan ang gas</li>
+      <li>B. Magdasal habang tumatawid sa intersection</li>
+      <li>C. Slow down and prepare to stop</li>
+      <li>D. Bilisan kasi baka maunahan ka ng red light</li>
+    </ul>
+    <p class="answer">Answer: C</p>
+  </div>
+
+  <script>
+    window.onload = function() {
+      setTimeout(() => {
+        const msg = document.getElementById("message");
+        if (msg) msg.style.opacity = 0;
+        setTimeout(() => {
+          window.location.href = "difficult2.html"; // transition to next question
+        }, 2000);
+      }, 8000); // show question
