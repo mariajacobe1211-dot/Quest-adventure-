@@ -2,72 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Difficult Question 2</title>
-  <style>
-    body {
-      background: url('assets/images/parchment.jpg') no-repeat center center fixed;
-      background-size: cover;
-      font-family: Verdana, Arial, sans-serif;
-      color: #3b2f2f;
-      text-align: center;
-      padding: 40px;
-      font-size: 18px;
-      line-height: 1.6;
-    }
-    .quest-box {
-      background: rgba(255,255,255,0.9);
-      border: 3px solid #3b2f2f;
-      border-radius: 12px;
-      padding: 30px;
-      max-width: 700px;
-      margin: auto;
-      box-shadow: 0 0 15px rgba(0,0,0,0.4);
-    }
-    h1 { color: #5a3e2b; margin-bottom: 25px; font-size: 22px; }
-    p { margin-bottom: 25px; font-size: 18px; }
-    .choices button {
-      display: block;
-      margin: 15px auto;
-      padding: 14px 22px;
-      background: #d4b483;
-      color: #3b2f2f;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: 0.3s;
-      max-width: 500px;
-      font-size: 18px;
-      cursor: pointer;
-    }
-    .choices button:hover { background: #b9975b; color: #fff; }
-    #feedback { margin-top: 20px; font-weight: bold; }
-  </style>
+  <title>Difficult Practical Questions – Q2</title>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <div class="quest-box">
-    <h1>🔴 Difficult Question 2</h1>
-    <p>What does a solid white line on the road usually mean?</p>
-    <div class="choices">
-      <button onclick="checkAnswer('A')">A. Pwede lumipat ng lane basta mabilis ang kotse</button>
-      <button onclick="checkAnswer('B')">B. Road decoration lang para hindi boring tingnan</button>
-      <button onclick="checkAnswer('C')">C. Avoid crossing or changing lanes unless permitted because it separates traffic lanes</button>
-      <button onclick="checkAnswer('D')">D. Signal na pwede mag-overtake kapag walang enforcer</button>
-    </div>
-    <div id="feedback"></div>
+  <div id="message">
+    <h2>🔴 Difficult Practical Questions</h2>
+
+    <p><strong>Q2.</strong> What does a solid white line on the road usually mean?</p>
+    <ul>
+      <li>A. Pwede lumipat ng lane basta mabilis ang kotse</li>
+      <li>B. Road decoration lang para hindi boring tingnan</li>
+      <li>C. Avoid crossing or changing lanes unless permitted because it separates traffic lanes</li>
+      <li>D. Signal na pwede mag-overtake kapag walang enforcer</li>
+    </ul>
+    <p class="answer">Answer: C</p>
   </div>
 
   <script>
-    function checkAnswer(choice) {
-      const feedback = document.getElementById('feedback');
-      if (choice === 'C') {
-        feedback.textContent = "✅ Correct! Proceeding to the next challenge...";
-        feedback.style.color = "green";
-        setTimeout(() => { window.location.href = 'difficult3.html'; }, 2000);
-      } else {
-        feedback.textContent = "❌ Wrong answer. Try again!";
-        feedback.style.color = "red";
-      }
-    }
+    window.onload = function() {
+      setTimeout(() => {
+        const msg = document.getElementById("message");
+        if (msg) msg.style.opacity = 0;
+        setTimeout(() => {
+          window.location.href = "difficult3.html";
+        }, 2000);
+      }, 8000);
+    };
   </script>
 </body>
 </html>
