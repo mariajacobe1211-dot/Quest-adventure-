@@ -54,24 +54,27 @@
     <p>What is the largest organ in the human body?</p>
     <input type="text" id="answer" placeholder="Type your answer here">
     <br>
-    <button onclick="checkAnswer()">Submit</button>
+    <button id="submitBtn">Submit</button>
     <div id="feedback"></div>
   </div>
 
   <script>
-    function checkAnswer() {
-      const userAnswer = document.getElementById('answer').value.trim().toLowerCase();
-      const feedback = document.getElementById('feedback');
+    document.getElementById("submitBtn").addEventListener("click", function() {
+      const userAnswer = document.getElementById("answer").value.trim().toLowerCase();
+      const feedback = document.getElementById("feedback");
+
       if (userAnswer === "skin") {
         feedback.textContent = "✅ Correct! Proceeding to the Difficult round...";
         feedback.style.color = "green";
-        // Route to difficult1.html
-        setTimeout(() => { window.location.href = 'difficult1.html'; }, 2000);
+        // Route to difficult1.html after 2 seconds
+        setTimeout(function() {
+          window.location.href = "difficult1.html";
+        }, 2000);
       } else {
         feedback.textContent = "❌ Wrong answer. Try again!";
         feedback.style.color = "red";
       }
-    }
+    });
   </script>
 </body>
 </html>
