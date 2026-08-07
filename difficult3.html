@@ -2,72 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Difficult Question 3</title>
-  <style>
-    body {
-      background: url('assets/images/parchment.jpg') no-repeat center center fixed;
-      background-size: cover;
-      font-family: Verdana, Arial, sans-serif;
-      color: #3b2f2f;
-      text-align: center;
-      padding: 40px;
-      font-size: 18px;
-      line-height: 1.6;
-    }
-    .quest-box {
-      background: rgba(255,255,255,0.9);
-      border: 3px solid #3b2f2f;
-      border-radius: 12px;
-      padding: 30px;
-      max-width: 700px;
-      margin: auto;
-      box-shadow: 0 0 15px rgba(0,0,0,0.4);
-    }
-    h1 { color: #5a3e2b; margin-bottom: 25px; font-size: 22px; }
-    p { margin-bottom: 25px; font-size: 18px; }
-    .choices button {
-      display: block;
-      margin: 15px auto;
-      padding: 14px 22px;
-      background: #d4b483;
-      color: #3b2f2f;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: 0.3s;
-      max-width: 500px;
-      font-size: 18px;
-      cursor: pointer;
-    }
-    .choices button:hover { background: #b9975b; color: #fff; }
-    #feedback { margin-top: 20px; font-weight: bold; }
-  </style>
+  <title>Difficult Practical Questions – Q3</title>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <div class="quest-box">
-    <h1>🔴 Difficult Question 3</h1>
-    <p>What is the maximum speed limit on a national highway (when conditions are safe and no lower speed limit is posted)?</p>
-    <div class="choices">
-      <button onclick="checkAnswer('A')">A. 120 km/h — "Maluwag naman ang daan, kaya pa yan!" 😎</button>
-      <button onclick="checkAnswer('B')">B. 80 km/h — "Safe na yan, hindi naman ako nagmamadali."</button>
-      <button onclick="checkAnswer('C')">C. 100 km/h — "Hindi pa naman lumilipad ang kotse, sakto lang!" 😂</button>
-      <button onclick="checkAnswer('D')">D. 150 km/h — "Testing lang kung gaano kalakas makina."</button>
-    </div>
-    <div id="feedback"></div>
+  <div id="message">
+    <h2>🔴 Difficult Practical Questions</h2>
+
+    <p><strong>Q3.</strong> What is the maximum speed limit on a national highway (when conditions are safe and no lower speed limit is posted)?</p>
+    <ul>
+      <li>A. 120 km/h — "Maluwag naman ang daan, kaya pa yan!" 😎</li>
+      <li>B. 80 km/h — "Safe na yan, hindi naman ako nagmamadali."</li>
+      <li>C. 100 km/h — "Hindi pa naman lumilipad ang kotse, sakto lang!" 😂</li>
+      <li>D. 150 km/h — "Testing lang kung gaano kalakas makina."</li>
+    </ul>
+    <p class="answer">Answer: C — 100 km/h</p>
   </div>
 
   <script>
-    function checkAnswer(choice) {
-      const feedback = document.getElementById('feedback');
-      if (choice === 'C') {
-        feedback.textContent = "✅ Correct! Proceeding to the next challenge...";
-        feedback.style.color = "green";
-        setTimeout(() => { window.location.href = 'difficult4.html'; }, 2000);
-      } else {
-        feedback.textContent = "❌ Wrong answer. Try again!";
-        feedback.style.color = "red";
-      }
-    }
+    window.onload = function() {
+      setTimeout(() => {
+        const msg = document.getElementById("message");
+        if (msg) msg.style.opacity = 0;
+        setTimeout(() => {
+          window.location.href = "difficult4.html";
+        }, 2000);
+      }, 8000);
+    };
   </script>
 </body>
 </html>
