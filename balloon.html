@@ -48,4 +48,124 @@
 
     #popup {
       position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      background
+      background: rgba(0,0,0,0.9); padding: 40px; border-radius: 20px;
+      color: #fff; font-size: 24px; text-align: center; display: none;
+      max-width: 90%; max-height: 90%; overflow: auto;
+    }
+    #popup img { max-width: 220px; margin: 10px; border-radius: 10px; box-shadow: 0 0 10px #fff; }
+    #closeBtn { margin-top: 20px; padding: 10px 20px; background: #d4b483; border: none; border-radius: 10px; font-size: 20px; cursor: pointer; }
+
+    #finalMessage {
+      display: none; position: fixed; top: 20%; width: 100%;
+      text-align: center; font-size: 56px; font-weight: bold;
+      color: #ffd700; text-shadow: 0 0 25px #fff, 0 0 40px #ff3333;
+    }
+    #restartBtn {
+      display: none; position: fixed; bottom: 60px; left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 25px; font-size: 18px; font-weight: bold;
+      background: linear-gradient(135deg, #d4b483, #b9975b);
+      color: #fff; border: none; border-radius: 12px; cursor: pointer;
+      transition: transform 0.3s, background 0.3s;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
+    #restartBtn:hover { transform: scale(1.1); background: linear-gradient(135deg, #b9975b, #5a3e2b); }
+
+    canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+  </style>
+</head>
+<body>
+  <div id="message">Oops got ya! I do not have a tangible gift for you but consider this project and future adventure my gift for you.</div>
+
+  <div id="balloons">
+    <div class="balloon" id="balloon1"></div>
+    <div class="balloon" id="balloon2"></div>
+  </div>
+
+  <div id="popup"><div id="popupContent"></div><button id="closeBtn">Close</button></div>
+
+  <div id="finalMessage">🎉 Happy Birthday!</div>
+  <button id="restartBtn">🔄 Restart Adventure</button>
+
+  <canvas id="confetti"></canvas>
+
+  <script>
+    window.onload = function() {
+      setTimeout(() => {
+        const msg = document.getElementById("message");
+        msg.style.opacity = 0;
+        setTimeout(() => {
+          msg.remove();
+          document.getElementById("balloons").classList.add("show");
+          startConfetti();
+        }, 2000);
+      }, 4000);
+    };
+
+    document.getElementById("balloon1").addEventListener("click", e => {
+      e.target.classList.add("pop");
+      showPopup("<p>🎂 Happy 31st Birthday! 🎂<br>Wishing you joy, love, and endless adventures ahead.</p>");
+      showFinale();
+    });
+    document.getElementById("balloon2").addEventListener("click", e => {
+      e.target.classList.add("pop");
+      showPopup(`
+        <p>📸 Your pictures:</p>
+        <img src="images/photo1.jpg" alt="Photo 1">
+        <img src="images/photo2.jpg" alt="Photo 2">
+        <img src="images/photo3.jpg" alt="Photo 3">
+        <img src="images/photo4.jpg" alt="Photo 4">
+      `);
+      showFinale();
+    });
+
+    function showPopup(content) {
+      document.getElementById("popupContent").innerHTML = content;
+      document.getElementById("popup").style.display = "block";
+    }
+    document.getElementById("closeBtn").addEventListener("click", () => {
+      document.getElementById("popup").style.display = "none";
+    });
+
+    function showFinale() {
+      document.getElementById("finalMessage").style.display = "block";
+      document.getElementById("restartBtn").style.display = "block";
+    }
+    document.getElementById("restartBtn").addEventListener("click", () => {
+      window.location.href = "index.html";
+    });
+
+    const canvas = document.getElementById("confetti");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+    let confettiPieces = [];
+
+    function initConfetti() {
+      confettiPieces = [];
+      for (let i = 0; i < 200; i++) {
+        confettiPieces.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height - canvas.height,
+          r: Math.random() * 6 + 2,
+          color: "hsl(" + Math.random() * 360 + ",100%,50%)"
+        });
+      }
+    }
+    function drawConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      confettiPieces.forEach(p => {
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, false);
+        ctx.fillStyle = p.color; ctx.fill();
+      });
+      updateConfetti();
+    }
+    function updateConfetti() {
+      confettiPieces.forEach(p => {
+        p.y += 2;
+        if (p.y > canvas.height) { p.x = Math.random() * canvas.width; p.y = -10; }
+      });
+    }
+    function startConfetti() { initConfetti(); setInterval(drawConfetti, 30); }
+  </script>
+</body>
+</html>
