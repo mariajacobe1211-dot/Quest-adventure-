@@ -49,4 +49,62 @@
     const ctx = canvas.getContext("2d");
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    let confetti
+    let confettiPieces = [];
+
+    function initConfetti() {
+      confettiPieces = [];
+      for (let i = 0; i < 150; i++) {
+        confettiPieces.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height - canvas.height,
+          r: Math.random() * 6 + 2,
+          color: "hsl(" + Math.random() * 360 + ",100%,50%)"
+        });
+      }
+    }
+    function drawConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      confettiPieces.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, false);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+      });
+      updateConfetti();
+    }
+    function updateConfetti() {
+      confettiPieces.forEach(p => {
+        p.y += 2;
+        if (p.y > canvas.height) {
+          p.x = Math.random() * canvas.width;
+          p.y = -10;
+        }
+      });
+    }
+    function startConfetti() {
+      initConfetti();
+      setInterval(drawConfetti, 30);
+    }
+
+    document.querySelectorAll("#quizForm button").forEach(btn => {
+      btn.addEventListener("click", function() {
+        const choice = this.getAttribute("data-choice");
+        if (choice === "C") {
+          feedback.textContent = "✅ Correct! Proceed to claim your reward...";
+          feedback.style.color = "green";
+          startConfetti();
+          setTimeout(function() {
+            document.body.classList.add("fade-out");
+            setTimeout(function() {
+              window.location.href = "reward.html"; // ✅ correct filename
+            }, 1000);
+          }, 3000);
+        } else {
+          feedback.textContent = "❌ Wrong answer. Try again!";
+          feedback.style.color = "red";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
