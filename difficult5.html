@@ -6,16 +6,16 @@ background:linear-gradient(to bottom right,#4e342e,#a1887f),
 url('assets/css/parchment.jpg') no-repeat center center fixed;
 background-blend-mode:multiply;background-size:cover;
 display:flex;justify-content:center;align-items:center;color:#2f1b0c;text-align:left;padding:40px;">
-  <div id="quiz" style="font-size:2em;line-height:1.8;padding:40px;background:rgba(255,248,220,0.95);
+  <div id="quiz" style="font-size:1.8em;line-height:1.6;padding:40px;background:rgba(255,248,220,0.95);
   border:4px solid #8b5a2b;border-radius:14px;box-shadow:0 0 25px rgba(255,215,0,0.8);
   width:90%;max-width:1200px;font-weight:bold;">
-    <h2 style="text-align:center;margin-bottom:25px;color:#5a3e1b;font-size:2.2em;">🔴 Difficult Round</h2>
+    <h2 style="text-align:center;margin-bottom:25px;color:#5a3e1b;font-size:2.2em;">🔴 Difficult Practical Question</h2>
     <p>Q5. What should you do during an earthquake while you are inside a building?</p>
-    <button onclick="checkAnswer('A')">A. Sumigaw ng “MAMA!” habang naghahanap ng matatakbuhan 😂</button>
-    <button onclick="checkAnswer('B')">B. Run outside immediately kahit may nahuhulog na bagay</button>
-    <button onclick="checkAnswer('C')">C. Drop, Cover, and Hold On until the shaking stops and pray for God’s protection 🙂</button>
-    <button onclick="checkAnswer('D')">D. Mag‑video muna para may emergency content</button>
-    <div id="feedback"></div>
+    <button style="font-size:1.5em;" onclick="checkAnswer('A')">A. Sumigaw ng “MAMA!” habang naghahanap ng matatakbuhan 😂</button>
+    <button style="font-size:1.5em;" onclick="checkAnswer('B')">B. Run outside immediately kahit may nahuhulog na bagay 🏃</button>
+    <button style="font-size:1.5em;" onclick="checkAnswer('C')">C. Drop, Cover, and Hold On until the shaking stops and pray for God’s protection 🙂 ✅</button>
+    <button style="font-size:1.5em;" onclick="checkAnswer('D')">D. Mag‑video muna para may emergency content 🎥</button>
+    <div id="feedback" style="margin-top:20px;font-size:1.4em;"></div>
   </div>
   <script>
     function checkAnswer(choice){
