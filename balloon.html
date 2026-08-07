@@ -7,7 +7,7 @@
     body {
       margin: 0;
       height: 100vh;
-      background: #111; /* dark theme */
+      background: #0d0d0d; /* dark theme */
       color: #f0f0f0;
       font-family: Verdana, Arial, sans-serif;
       display: flex;
@@ -15,12 +15,24 @@
       align-items: center;
       overflow: hidden;
     }
+    /* Error box */
     #message {
-      font-size: 28px;
+      font-size: 26px;
       text-align: center;
       max-width: 800px;
       opacity: 1;
       transition: opacity 2s ease;
+      background: #ff3333;
+      color: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(255,255,255,0.9);
+      border: 3px solid #fff;
+    }
+    #message::before {
+      content: "⚠️ 🤪 ";
+      font-size: 32px;
+      margin-right: 10px;
     }
     #balloons {
       display: none;
@@ -88,10 +100,10 @@
       bottom: 40px;
       width: 100%;
       text-align: center;
-      font-size: 52px;
+      font-size: 56px;
       font-weight: bold;
       color: #ffd700;
-      text-shadow: 0 0 20px #fff;
+      text-shadow: 0 0 25px #fff, 0 0 40px #ff3333;
     }
     #restartBtn {
       display: none;
@@ -143,7 +155,6 @@
   <canvas id="confetti"></canvas>
 
   <script>
-    // Fade message then show balloons
     window.onload = function() {
       setTimeout(() => {
         document.getElementById("message").style.opacity = 0;
@@ -152,10 +163,9 @@
           document.getElementById("balloons").style.display = "flex";
           startConfetti();
         }, 2000);
-      }, 4000); // show message for 4s
+      }, 4000);
     };
 
-    // Balloon click events
     document.getElementById("balloon1").addEventListener("click", () => {
       showPopup("<p>🎂 31 years old na nganiiii!</p>");
       showFinale();
@@ -163,73 +173,5 @@
     document.getElementById("balloon2").addEventListener("click", () => {
       showPopup(`
         <p>📸 Your pictures:</p>
-        <img src="assets/images/pic1.jpg" alt="Photo 1">
-        <img src="assets/images/pic2.jpg" alt="Photo 2">
-        <img src="assets/images/pic3.jpg" alt="Photo 3">
-        <img src="assets/images/pic4.jpg" alt="Photo 4">
-      `);
-      showFinale();
-    });
-
-    function showPopup(content) {
-      document.getElementById("popupContent").innerHTML = content;
-      document.getElementById("popup").style.display = "block";
-    }
-    document.getElementById("closeBtn").addEventListener("click", () => {
-      document.getElementById("popup").style.display = "none";
-    });
-
-    function showFinale() {
-      document.getElementById("finalMessage").style.display = "block";
-      document.getElementById("restartBtn").style.display = "block";
-    }
-
-    // Restart button
-    document.getElementById("restartBtn").addEventListener("click", () => {
-      window.location.href = "index.html";
-    });
-
-    // Confetti
-    const canvas = document.getElementById("confetti");
-    const ctx = canvas.getContext("2d");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    let confettiPieces = [];
-
-    function initConfetti() {
-      confettiPieces = [];
-      for (let i = 0; i < 200; i++) {
-        confettiPieces.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height - canvas.height,
-          r: Math.random() * 6 + 2,
-          color: "hsl(" + Math.random() * 360 + ",100%,50%)"
-        });
-      }
-    }
-    function drawConfetti() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      confettiPieces.forEach(p => {
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, false);
-        ctx.fillStyle = p.color;
-        ctx.fill();
-      });
-      updateConfetti();
-    }
-    function updateConfetti() {
-      confettiPieces.forEach(p => {
-        p.y += 2;
-        if (p.y > canvas.height) {
-          p.x = Math.random() * canvas.width;
-          p.y = -10;
-        }
-      });
-    }
-    function startConfetti() {
-      initConfetti();
-      setInterval(drawConfetti, 30);
-    }
-  </script>
-</body>
-</html>
+        <img src="images/IMG_1234.JPG" alt="Photo 1">
+        <img src="images/IMG_5678.JPG" alt="Photo 2">
