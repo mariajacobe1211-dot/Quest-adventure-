@@ -8,59 +8,62 @@
     body {
       margin: 0;
       height: 100vh;
-      font-family: "Papyrus", "Times New Roman", serif;
+      font-family: "Georgia", serif;
       background: url("assets/css/parchment.jpg") no-repeat center center fixed;
       background-size: cover;
       display: flex;
       justify-content: center;
       align-items: center;
-      color: #3b2f2f;
+      color: #2f1b0c;
       text-align: left;
       padding: 40px;
     }
-    #message {
+    #quiz {
       font-size: 1.2em;
       line-height: 1.6;
       padding: 20px;
-      background: rgba(255, 248, 220, 0.9);
+      background: rgba(255, 248, 220, 0.95);
       border: 3px solid #8b5a2b;
       border-radius: 12px;
       box-shadow: 0 0 12px #d2b48c;
-      transition: opacity 2s ease;
       max-width: 800px;
+      font-weight: bold;
     }
     h2 {
       text-align: center;
       margin-bottom: 20px;
       color: #5a3e1b;
+      font-weight: bold;
     }
-    .answer {
+    button {
+      display: block;
+      margin: 8px 0;
+      padding: 10px;
+      width: 100%;
+      font-weight: bold;
+      font-size: 1em;
+      background: #f5deb3;
+      border: 2px solid #8b5a2b;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #deb887;
+    }
+    #feedback {
       margin-top: 15px;
       font-weight: bold;
-      color: #2f4f4f;
     }
   </style>
 </head>
 <body>
-  <div id="message">
+  <div id="quiz">
     <h2>🔴 Difficult Practical Questions</h2>
-
-    <p><strong>Q1.</strong> What should a responsible driver do when the traffic light turns yellow?</p>
-    <ul>
-      <li>A. Sabihin “kaya pa ‘to!” habang dinidiinan ang gas</li>
-      <li>B. Magdasal habang tumatawid sa intersection</li>
-      <li>C. Slow down and prepare to stop</li>
-      <li>D. Bilisan kasi baka maunahan ka ng red light</li>
-    </ul>
-    <p class="answer">Answer: C</p>
+    <p>Q1. What should a responsible driver do when the traffic light turns yellow?</p>
+    <button onclick="checkAnswer('A')">A. Sabihin “kaya pa ‘to!” habang dinidiinan ang gas</button>
+    <button onclick="checkAnswer('B')">B. Magdasal habang tumatawid sa intersection</button>
+    <button onclick="checkAnswer('C')">C. Slow down and prepare to stop</button>
+    <button onclick="checkAnswer('D')">D. Bilisan kasi baka maunahan ka ng red light</button>
+    <div id="feedback"></div>
   </div>
 
-  <script>
-    window.onload = function() {
-      setTimeout(() => {
-        const msg = document.getElementById("message");
-        if (msg) msg.style.opacity = 0;
-        setTimeout(() => {
-          window.location.href = "difficult2.html"; // transition to next question
-        }, 2000);
-      }, 8000); // show question
