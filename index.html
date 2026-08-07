@@ -12,7 +12,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, #1a1a1a, #333333, #4d2600);
+      background: radial-gradient(circle at top, #1a1a1a, #0d0d0d, #2e2e2e);
       color: #f0f0f0;
       text-align: center;
     }
@@ -22,21 +22,17 @@
       text-shadow: 0 0 25px #fff, 0 0 40px #ff3333;
       margin-bottom: 40px;
     }
-    p {
-      font-size: 22px;
-      max-width: 800px;
-      margin-bottom: 60px;
-      line-height: 1.6;
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
     }
-    .note {
-      font-size: 18px;
-      color: #d4b483;
-      margin-top: 20px;
-      font-style: italic;
+    nav li {
+      margin: 12px 0;
     }
-    a {
+    nav a {
       display: inline-block;
-      padding: 15px 30px;
+      padding: 12px 25px;
       font-size: 20px;
       font-weight: bold;
       background: linear-gradient(135deg, #d4b483, #b9975b);
@@ -46,20 +42,36 @@
       box-shadow: 0 0 15px rgba(0,0,0,0.5);
       transition: transform 0.3s, background 0.3s;
     }
-    a:hover {
+    nav a:hover {
       transform: scale(1.1);
       background: linear-gradient(135deg, #b9975b, #5a3e2b);
+    }
+    .note {
+      font-size: 18px;
+      color: #d4b483;
+      margin-top: 40px;
+      font-style: italic;
     }
   </style>
 </head>
 <body>
   <h1>🎉 Welcome to the Quest Adventure 🎉</h1>
-  <p>
-    This is the beginning of your interactive birthday journey.  
-    Get ready for surprises, balloons, confetti, and a special finale.  
-    Click below to start your adventure!
-  </p>
-  <a href="balloon.html">Start Adventure</a>
+
+  <nav>
+    <ul>
+      <li><a href="easy1.html">Easy Question 1</a></li>
+      <li><a href="easy2.html">Easy Question 2</a></li>
+      <li><a href="easy3.html">Easy Question 3</a></li>
+      <li><a href="difficult1.html">Difficult Question 1</a></li>
+      <li><a href="difficult2.html">Difficult Question 2</a></li>
+      <li><a href="difficult3.html">Difficult Question 3</a></li>
+      <li><a href="difficult4.html">Difficult Question 4</a></li>
+      <li><a href="difficult5.html">Difficult Question 5</a></li>
+      <li><a href="reward.html">🎁 Claim Reward</a></li>
+      <li><a href="balloon.html">🎈 Balloon Finale</a></li>
+    </ul>
+  </nav>
+
   <div class="note">PS: NO NEED TO REVIEW. STOCK KNOWLEDGE WILL DO. No using of AI — just enjoy!</div>
 </body>
 </html>
