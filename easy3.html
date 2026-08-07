@@ -2,32 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Easy General Questions – Q3</title>
+  <title>Easy Question 3</title>
   <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
-  <div id="quiz">
-    <h2>🟢 Easy General Questions</h2>
-    <p>Q3. What is the largest organ in the human body?</p>
-    <button onclick="checkAnswer('A')">A. Heart</button>
-    <button onclick="checkAnswer('B')">B. Liver</button>
-    <button onclick="checkAnswer('C')">C. Skin</button>
-    <button onclick="checkAnswer('D')">D. Lungs</button>
-    <div id="feedback"></div>
-  </div>
-
-  <script>
-    function checkAnswer(choice) {
-      const feedback = document.getElementById("feedback");
-      if (choice === "C") {
-        feedback.textContent = "✅ Correct! Transitioning to the Difficult Round...";
-        feedback.style.color = "green";
-        setTimeout(() => { window.location.href = "difficult1.html"; }, 2500);
-      } else {
-        feedback.textContent = "❌ Wrong answer. Try again!";
-        feedback.style.color = "red";
-      }
+  <style>
+    body {
+      margin: 0; height: 100vh;
+      font-family: "Georgia", serif;
+      background: url("assets/css/parchment.jpg") no-repeat center center fixed;
+      background-size: cover;
+      display: flex; justify-content: center; align-items: center;
+      color: #2f1b0c; text-align: left; padding: 40px;
     }
-  </script>
-</body>
-</html>
+    #quiz {
+      font-size: 1.5em; line-height: 1.8;
+      padding: 30px; background: rgba(255,248,220,0.95);
+      border: 4px solid #8b5a2b; border-radius: 14px;
+      box-shadow: 0 0 18px #d2b48c; max-width: 900px;
+      font-weight: bold;
+    }
+    h2 { text-align: center; margin-bottom: 25px; color: #5a3e1b; font-weight: bold; font-size: 1.8em; }
+    button {
+      display: block; margin: 12px 0; padding: 16px; width: 100%;
+      font-weight: bold; font-size: 1.2em;
+      background
