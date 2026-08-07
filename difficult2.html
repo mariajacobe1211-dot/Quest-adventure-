@@ -4,31 +4,83 @@
   <meta charset="UTF-8">
   <title>Difficult Practical Questions – Q2</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: "Georgia", serif;
+      background: url("assets/css/parchment.jpg") no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #2f1b0c;
+      text-align: left;
+      padding: 40px;
+    }
+    #quiz {
+      font-size: 1.2em;
+      line-height: 1.6;
+      padding: 20px;
+      background: rgba(255, 248, 220, 0.95);
+      border: 3px solid #8b5a2b;
+      border-radius: 12px;
+      box-shadow: 0 0 12px #d2b48c;
+      max-width: 800px;
+      font-weight: bold;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #5a3e1b;
+      font-weight: bold;
+    }
+    button {
+      display: block;
+      margin: 8px 0;
+      padding: 10px;
+      width: 100%;
+      font-weight: bold;
+      font-size: 1em;
+      background: #f5deb3;
+      border: 2px solid #8b5a2b;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #deb887;
+    }
+    #feedback {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-  <div id="message">
+  <div id="quiz">
     <h2>🔴 Difficult Practical Questions</h2>
-
-    <p><strong>Q2.</strong> What does a solid white line on the road usually mean?</p>
-    <ul>
-      <li>A. Pwede lumipat ng lane basta mabilis ang kotse</li>
-      <li>B. Road decoration lang para hindi boring tingnan</li>
-      <li>C. Avoid crossing or changing lanes unless permitted because it separates traffic lanes</li>
-      <li>D. Signal na pwede mag-overtake kapag walang enforcer</li>
-    </ul>
-    <p class="answer">Answer: C</p>
+    <p>Q2. What does a solid white line on the road usually mean?</p>
+    <button onclick="checkAnswer('A')">A. Pwede lumipat ng lane basta mabilis ang kotse</button>
+    <button onclick="checkAnswer('B')">B. Road decoration lang para hindi boring tingnan</button>
+    <button onclick="checkAnswer('C')">C. Avoid crossing or changing lanes unless permitted because it separates traffic lanes</button>
+    <button onclick="checkAnswer('D')">D. Signal na pwede mag-overtake kapag walang enforcer</button>
+    <div id="feedback"></div>
   </div>
 
   <script>
-    window.onload = function() {
-      setTimeout(() => {
-        const msg = document.getElementById("message");
-        if (msg) msg.style.opacity = 0;
+    function checkAnswer(choice) {
+      const feedback = document.getElementById("feedback");
+      if (choice === "C") {
+        feedback.textContent = "✅ Correct! Proceeding to next question...";
+        feedback.style.color = "green";
         setTimeout(() => {
           window.location.href = "difficult3.html";
         }, 2000);
-      }, 8000);
-    };
+      } else {
+        feedback.textContent = "❌ Wrong answer. Try again!";
+        feedback.style.color = "red";
+      }
+    }
   </script>
 </body>
 </html>
