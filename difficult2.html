@@ -4,15 +4,15 @@
 <body style="margin:0;height:100vh;width:100vw;font-family:'Georgia',serif;background:linear-gradient(to bottom right,#4e342e,#a1887f),
 url('assets/css/parchment.jpg') no-repeat center center fixed;background-blend-mode:multiply;background-size:cover;
 display:flex;justify-content:center;align-items:center;color:#2f1b0c;text-align:left;padding:40px;">
-  <div id="quiz" style="font-size:2em;line-height:1.8;padding:40px;background:rgba(255,248,220,0.95);
+  <div id="quiz" style="font-size:1.8em;line-height:1.6;padding:40px;background:rgba(255,248,220,0.95);
   border:4px solid #8b5a2b;border-radius:14px;box-shadow:0 0 25px rgba(255,215,0,0.8);width:90%;max-width:1200px;font-weight:bold;">
-    <h2 style="text-align:center;margin-bottom:25px;color:#5a3e1b;font-size:2.2em;">🔴 Difficult Round</h2>
+    <h2 style="text-align:center;margin-bottom:25px;color:#5a3e1b;font-size:2.2em;">🔴 Difficult Practical Question</h2>
     <p>Q2. What does a solid white line on the road usually mean?</p>
-    <button onclick="checkAnswer('A')">A. Pwede lumipat ng lane basta mabilis ang kotse</button>
-    <button onclick="checkAnswer('B')">B. Road decoration lang para hindi boring tingnan</button>
-    <button onclick="checkAnswer('C')">C. Avoid crossing or changing lanes unless permitted because it separates traffic lanes</button>
-    <button onclick="checkAnswer('D')">D. Signal na pwede mag‑overtake kapag walang enforcer</button>
-    <div id="feedback"></div>
+    <button style="font-size:1.5em;" onclick="checkAnswer('A')">A. Pwede lumipat ng lane basta mabilis ang kotse 🏎️</button>
+    <button style="font-size:1.5em;" onclick="checkAnswer('B')">B. Road decoration lang para hindi boring tingnan 🎨</button>
+    <button style="font-size:1.5em;" onclick="checkAnswer('C')">C. Avoid crossing or changing lanes unless permitted ✅</button>
+    <button style="font-size:1.5em;" onclick="checkAnswer('D')">D. Signal na pwede mag‑overtake kapag walang enforcer 👮</button>
+    <div id="feedback" style="margin-top:20px;font-size:1.4em;"></div>
   </div>
   <script>
     function checkAnswer(choice){
