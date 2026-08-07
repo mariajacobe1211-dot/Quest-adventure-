@@ -2,60 +2,233 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Balloon Surprise</title>
+  <title>Balloon Finale</title>
   <style>
     body {
-      background: url('assets/images/balloons.jpg') no-repeat center center fixed;
-      background-size: cover;
-      font-family: 'MedievalSharp', cursive;
-      color: #3b2f2f;
+      margin: 0;
+      height: 100vh;
+      background: #111; /* dark theme */
+      color: #f0f0f0;
+      font-family: Verdana, Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    #message {
+      font-size: 28px;
       text-align: center;
-      animation: fadeIn 2s ease-in;
+      max-width: 800px;
+      opacity: 1;
+      transition: opacity 2s ease;
+    }
+    #balloons {
+      display: none;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0; left: 0;
+      justify-content: center;
+      align-items: center;
+      gap: 120px;
     }
     .balloon {
-      font-size: 50px;
+      width: 140px;
+      height: 180px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff4d4d, #cc0000);
       cursor: pointer;
-      margin: 20px;
-      display: inline-block;
+      position: relative;
+      box-shadow: 0 0 20px rgba(255,255,255,0.6);
+      transition: transform 0.3s;
     }
-    #surprise {
+    .balloon:hover { transform: scale(1.1); }
+    .balloon::after {
+      content: "";
+      position: absolute;
+      bottom: -50px;
+      left: 50%;
+      width: 2px;
+      height: 50px;
+      background: #fff;
+    }
+    #popup {
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0,0,0,0.9);
+      padding: 40px;
+      border-radius: 20px;
+      color: #fff;
+      font-size: 24px;
+      text-align: center;
       display: none;
-      margin-top: 30px;
+      max-width: 90%;
+      max-height: 90%;
+      overflow: auto;
     }
-    #surprise img {
-      width: 200px;
-      border-radius: 10px;
+    #popup img {
+      max-width: 200px;
       margin: 10px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #fff;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    #closeBtn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #d4b483;
+      border: none;
+      border-radius: 10px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    #finalMessage {
+      display: none;
+      position: fixed;
+      bottom: 40px;
+      width: 100%;
+      text-align: center;
+      font-size: 48px;
+      font-weight: bold;
+      color: #ffd700;
+      text-shadow: 0 0 20px #fff;
+    }
+    #restartBtn {
+      display: none;
+      position: fixed;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 20px 50px;
+      font-size: 28px;
+      font-weight: bold;
+      background: linear-gradient(135deg, #d4b483, #b9975b);
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: transform 0.3s, background 0.3s;
+      box-shadow: 0 0 25px rgba(0,0,0,0.5);
+    }
+    #restartBtn:hover {
+      transform: scale(1.1);
+      background: linear-gradient(135deg, #b9975b, #5a3e2b);
+    }
+    canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
     }
   </style>
 </head>
 <body>
-  <h1>🎈 Pop the Balloons! 🎈</h1>
-
-  <!-- Balloons -->
-  <div class="balloon" onclick="popBalloon(1)">🎈 Balloon 1</div>
-  <div class="balloon" onclick="popBalloon(2)">🎈 Balloon 2</div>
-
-  <!-- Surprise Section -->
-  <div id="surprise">
-    <img src="assets/images/photo1.jpg" alt="Surprise 1">
-    <img src="assets/images/photo2.jpg" alt="Surprise 2">
-    <img src="assets/images/photo3.jpg" alt="Surprise 3">
-    <img src="assets/images/photo4.jpg" alt="Surprise 4">
-    <h1 style="color:#ff4081;">🎉 Happy Birthday! 🎉</h1>
+  <div id="message">
+    Oops got ya! I do not have a tangible gift for you but consider this project and future adventure my gift for you.
   </div>
 
+  <div id="balloons">
+    <div class="balloon" id="balloon1"></div>
+    <div class="balloon" id="balloon2"></div>
+  </div>
+
+  <div id="popup">
+    <div id="popupContent"></div>
+    <button id="closeBtn">Close</button>
+  </div>
+
+  <div id="finalMessage">🎉 Happy Birthday!</div>
+  <button id="restartBtn">🔄 Restart Adventure</button>
+
+  <canvas id="confetti"></canvas>
+
   <script>
-    function popBalloon(balloonNumber) {
-      if (balloonNumber === 2) {
-        document.getElementById('surprise').style.display = 'block';
-      } else {
-        alert("Balloon " + balloonNumber + " popped!");
+    // Fade message then show balloons
+    window.onload = function() {
+      setTimeout(() => {
+        document.getElementById("message").style.opacity = 0;
+        setTimeout(() => {
+          document.getElementById("message").style.display = "none";
+          document.getElementById("balloons").style.display = "flex";
+          startConfetti();
+        }, 2000);
+      }, 4000); // show message for 4s
+    };
+
+    // Balloon click events
+    document.getElementById("balloon1").addEventListener("click", () => {
+      showPopup("<p>🎂 31 years old na nganiiii!</p>");
+      showFinale();
+    });
+    document.getElementById("balloon2").addEventListener("click", () => {
+      showPopup(`
+        <p>📸 Your pictures:</p>
+        <img src="assets/images/pic1.jpg">
+        <img src="assets/images/pic2.jpg">
+        <img src="assets/images/pic3.jpg">
+        <img src="assets/images/pic4.jpg">
+      `);
+      showFinale();
+    });
+
+    function showPopup(content) {
+      document.getElementById("popupContent").innerHTML = content;
+      document.getElementById("popup").style.display = "block";
+    }
+    document.getElementById("closeBtn").addEventListener("click", () => {
+      document.getElementById("popup").style.display = "none";
+    });
+
+    function showFinale() {
+      document.getElementById("finalMessage").style.display = "block";
+      document.getElementById("restartBtn").style.display = "block";
+    }
+
+    // Restart button
+    document.getElementById("restartBtn").addEventListener("click", () => {
+      window.location.href = "index.html";
+    });
+
+    // Confetti
+    const canvas = document.getElementById("confetti");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    let confettiPieces = [];
+
+    function initConfetti() {
+      confettiPieces = [];
+      for (let i = 0; i < 200; i++) {
+        confettiPieces.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height - canvas.height,
+          r: Math.random() * 6 + 2,
+          color: "hsl(" + Math.random() * 360 + ",100%,50%)"
+        });
       }
+    }
+    function drawConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      confettiPieces.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, false);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+      });
+      updateConfetti();
+    }
+    function updateConfetti() {
+      confettiPieces.forEach(p => {
+        p.y += 2;
+        if (p.y > canvas.height) {
+          p.x = Math.random() * canvas.width;
+          p.y = -10;
+        }
+      });
+    }
+    function startConfetti() {
+      initConfetti();
+      setInterval(drawConfetti, 30);
     }
   </script>
 </body>
